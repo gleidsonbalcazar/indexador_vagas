@@ -1,7 +1,7 @@
-import express from 'express'
+import express from 'express';
 import landing from './../../services/landing/';
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', landing)
+router.get('/', landing);
 
 module.exports = router;
