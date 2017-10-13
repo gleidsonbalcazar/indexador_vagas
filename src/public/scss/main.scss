@@ -70,6 +70,25 @@ html, body, h1, h2, h3, h4, h5, h6 { font-family: 'Source Sans Pro', sans-serif;
 	}
 }
 
+#position_counter {
+	background: linear-gradient(to bottom right, $bg-primary-default, $bg-primary-secondary);
+	padding: 3.2em 0;
+	h2, p {
+		color: $color-default;
+		opacity: 0.8;
+	}
+}
+
+#contact {
+	padding: 3.2em 0 5em 0;
+}
+
+#footer {
+	p {
+		font-size: 0.83em;
+	}
+}
+
 .c-white { color: $color-default }
 .title {
 	text-align: center;
