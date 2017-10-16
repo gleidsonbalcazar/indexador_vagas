@@ -5,6 +5,11 @@ import morgan from 'morgan';
 import hbs from 'express-hbs';
 import methodOverride from 'method-override';
 import session from 'express-session';
+import mongoose from 'mongoose';
+import 'mongoose-type-email';
+import User from './../../models/users';
+import passport from 'passport';
+import {Strategy} from 'passport-local';
 
 
 module.exports = (app) => {
@@ -23,9 +28,20 @@ module.exports = (app) => {
 		saveUninitialized: false
 	}))
 
+
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	passport.use(new Strategy(User.authenticate()))
+	passport.serializeUser(User.serializeUser());
+	passport.deserializeUser(User.deserializeUser())
+
 	app.engine('hbs', hbs.express4({
 		defaultLayout: path.join(app.get('views'), 'layouts/main.hbs'),
 		partialsDir: path.join(app.get('views'), 'partials'),
 		layoutsDir: path.join(app.get('views'), 'layouts')
 	}))
+
+	mongoose.Promise = global.Promise
+	mongoose.connect('mongodb://localhost:27017/indexador', { useMongoClient: true})
 }
